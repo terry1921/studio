@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { LogIn, Loader2 } from "lucide-react";
 import { auth, googleProvider, db } from '@/lib/firebase';
-import { signInWithEmailAndPassword, signInWithPopup, getAdditionalUserInfo } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, getAdditionalUserInfo, sendEmailVerification } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 import { Icons } from '@/components/icons';
 import { useToast } from '@/hooks/use-toast';
@@ -35,7 +35,19 @@ export default function LoginPage() {
     setIsLoading(true);
     setError(null);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      if (!userCredential.user.emailVerified) {
+        await sendEmailVerification(userCredential.user);
+        setError('Please verify your email to log in. A new verification link has been sent.');
+        toast({
+          title: 'Email Not Verified',
+          description: 'A new verification link has been sent to your email.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
       toast({ title: "Login Successful", description: "Welcome back!" });
       router.push('/dashboard');
     } catch (err: any) {

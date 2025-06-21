@@ -20,7 +20,8 @@ import {
   createUserWithEmailAndPassword, 
   signInWithPopup, 
   updateProfile, 
-  getAdditionalUserInfo 
+  getAdditionalUserInfo,
+  sendEmailVerification
 } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 import { Icons } from '@/components/icons';
@@ -50,6 +51,7 @@ export default function SignupPage() {
       const user = userCredential.user;
       
       await updateProfile(user, { displayName: name });
+      await sendEmailVerification(user);
       
       const userRef = ref(db, 'users/' + user.uid);
       await set(userRef, {
@@ -60,8 +62,8 @@ export default function SignupPage() {
         updatedAt: new Date().toISOString(),
       });
 
-      toast({ title: "Account Created", description: "Welcome to Content Shelf!" });
-      router.push('/dashboard');
+      toast({ title: "Account Created", description: "A verification email has been sent. Please check your inbox." });
+      router.push('/login');
     } catch (err: any) {
       setError(err.message);
       toast({ title: "Signup Failed", description: err.message, variant: 'destructive' });
