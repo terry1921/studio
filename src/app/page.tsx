@@ -39,7 +39,7 @@ export default function Home() {
         <div className="container mx-auto flex justify-between items-center">
           <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Content Shelf. All Rights Reserved.</p>
           <Link href="/login">
-            <Button variant="outline">
+            <Button variant="outline" aria-label="Login">
               <LogIn />
               Login
             </Button>
