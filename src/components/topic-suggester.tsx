@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useEffect, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { getTopicSuggestions, type FormState } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -32,7 +32,7 @@ function SubmitButton() {
 
 export function TopicSuggester() {
   const initialState: FormState = { message: null, topics: [] };
-  const [state, dispatch] = useFormState(getTopicSuggestions, initialState);
+  const [state, dispatch] = useActionState(getTopicSuggestions, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
