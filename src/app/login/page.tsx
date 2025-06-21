@@ -64,69 +64,80 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
-      <Card className="w-full max-w-sm">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-headline">Login</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
-        </CardHeader>
-        <form onSubmit={handleEmailSignIn}>
-          <CardContent className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input 
-                id="email" 
-                type="email" 
-                placeholder="m@example.com" 
-                required 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={isLoading || isGoogleLoading}
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input 
-                id="password" 
-                type="password" 
-                required 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={isLoading || isGoogleLoading}
-              />
-            </div>
-            {error && <p className="text-sm text-destructive text-center">{error}</p>}
-          </CardContent>
-          <CardFooter className="flex flex-col gap-4">
-            <Button type="submit" className="w-full" disabled={isLoading || isGoogleLoading}>
-              {isLoading ? <Loader2 className="animate-spin"/> : <LogIn />}
-              Sign in
-            </Button>
-            <div className="relative w-full">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
+    <div className="flex flex-col min-h-screen bg-background">
+      <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-lg font-semibold"
+        >
+          <Icons.logo className="w-6 h-6" />
+          <span>Content Shelf</span>
+        </Link>
+      </header>
+      <main className="flex-1 flex items-center justify-center p-6">
+        <Card className="w-full max-w-sm">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl font-headline">Login</CardTitle>
+            <CardDescription>
+              Enter your email below to login to your account
+            </CardDescription>
+          </CardHeader>
+          <form onSubmit={handleEmailSignIn}>
+            <CardContent className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isLoading || isGoogleLoading}
+                />
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">
-                  Or continue with
-                </span>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={isLoading || isGoogleLoading}
+                />
               </div>
-            </div>
-            <Button variant="outline" type="button" className="w-full" onClick={handleGoogleSignIn} disabled={isLoading || isGoogleLoading}>
-              {isGoogleLoading ? <Loader2 className="animate-spin"/> : <Icons.google className="h-5 w-5"/>}
-              Sign in with Google
-            </Button>
-            <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <Link href="#" className="underline">
-                Sign up
-              </Link>
-            </div>
-          </CardFooter>
-        </form>
-      </Card>
+              {error && <p className="text-sm text-destructive text-center">{error}</p>}
+            </CardContent>
+            <CardFooter className="flex flex-col gap-4">
+              <Button type="submit" className="w-full" disabled={isLoading || isGoogleLoading}>
+                {isLoading ? <Loader2 className="animate-spin"/> : <LogIn />}
+                Sign in
+              </Button>
+              <div className="relative w-full">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">
+                    Or continue with
+                  </span>
+                </div>
+              </div>
+              <Button variant="outline" type="button" className="w-full" onClick={handleGoogleSignIn} disabled={isLoading || isGoogleLoading}>
+                {isGoogleLoading ? <Loader2 className="animate-spin"/> : <Icons.google className="h-5 w-5"/>}
+                Sign in with Google
+              </Button>
+              <div className="mt-4 text-center text-sm">
+                Don&apos;t have an account?{" "}
+                <Link href="#" className="underline">
+                  Sign up
+                </Link>
+              </div>
+            </CardFooter>
+          </form>
+        </Card>
+      </main>
     </div>
   );
 }
