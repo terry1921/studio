@@ -5,6 +5,9 @@ import { MusicShowcase } from '@/components/music-showcase';
 import { TopicSuggester } from '@/components/topic-suggester';
 import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { LogIn } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -33,7 +36,15 @@ export default function Home() {
       </main>
 
       <footer className="w-full py-6 px-4 md:px-6 border-t mt-12">
-        <p className="text-sm text-muted-foreground text-center">© {new Date().getFullYear()} Content Shelf. All Rights Reserved.</p>
+        <div className="container mx-auto flex justify-between items-center">
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Content Shelf. All Rights Reserved.</p>
+          <Link href="/login">
+            <Button variant="outline">
+              <LogIn />
+              Login
+            </Button>
+          </Link>
+        </div>
       </footer>
     </div>
   );
