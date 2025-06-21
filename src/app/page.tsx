@@ -2,7 +2,6 @@ import { StoreProfile } from '@/components/store-profile';
 import { BlogPosts } from '@/components/blog-posts';
 import { ProductShowcase } from '@/components/product-showcase';
 import { MusicShowcase } from '@/components/music-showcase';
-import { TopicSuggester } from '@/components/topic-suggester';
 import { Icons } from '@/components/icons';
 import { AuthButton } from '@/components/auth-button';
 
@@ -25,7 +24,6 @@ export default function Home() {
           </aside>
           
           <div className="lg:col-span-2 flex flex-col gap-8">
-            <TopicSuggester />
             <ProductShowcase />
             <BlogPosts />
           </div>
