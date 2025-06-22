@@ -38,21 +38,21 @@ export async function getTopicSuggestions(
   try {
     const result = await suggestBlogTopics(parsed.data);
     if (!result.topics || result.topics.length === 0) {
-      return { 
-        message: "No topics generated. Try a different keyword.", 
-        topics: [] 
+      return {
+        message: "No topics generated. Try a different keyword.",
+        topics: []
       };
     }
-    return { 
-      message: 'Success!', 
+    return {
+      message: 'Success!',
       topics: result.topics,
-      errors: {} 
+      errors: {}
     };
   } catch (error) {
     console.error(error);
-    return { 
-      message: "An error occurred while generating topics. Please try again.", 
-      topics: [] 
+    return {
+      message: "An error occurred while generating topics. Please try again.",
+      topics: []
     };
   }
 }

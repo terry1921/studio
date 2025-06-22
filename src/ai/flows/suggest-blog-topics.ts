@@ -38,7 +38,7 @@ const prompt = ai.definePrompt({
   Store Focus: {{{storeFocus}}}
 
   Blog Post Topics:
-  `, 
+  `,
 });
 
 const suggestBlogTopicsFlow = ai.defineFlow(

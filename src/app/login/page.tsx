@@ -51,7 +51,7 @@ export default function LoginPage() {
       toast({ title: "Login Successful", description: "Welcome back!" });
       router.push('/dashboard');
     } catch (err: any) {
-      const errorMessage = err.code === 'auth/invalid-credential' 
+      const errorMessage = err.code === 'auth/invalid-credential'
         ? 'Invalid email or password. Please try again.'
         : err.message;
       setError(errorMessage);
@@ -82,7 +82,7 @@ export default function LoginPage() {
       } else {
         toast({ title: "Login Successful", description: "Welcome back!" });
       }
-      
+
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.message);
