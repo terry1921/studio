@@ -2,12 +2,8 @@ import { StoreProfile } from '@/components/store-profile';
 import { BlogPosts } from '@/components/blog-posts';
 import { ProductShowcase } from '@/components/product-showcase';
 import { MusicShowcase } from '@/components/music-showcase';
-import { TopicSuggester } from '@/components/topic-suggester';
-import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { LogIn } from 'lucide-react';
+import { AuthButton } from '@/components/auth-button';
 
 export default function Home() {
   return (
@@ -28,7 +24,6 @@ export default function Home() {
           </aside>
           
           <div className="lg:col-span-2 flex flex-col gap-8">
-            <TopicSuggester />
             <ProductShowcase />
             <BlogPosts />
           </div>
@@ -38,12 +33,7 @@ export default function Home() {
       <footer className="w-full py-6 px-4 md:px-6 border-t mt-12">
         <div className="container mx-auto flex justify-between items-center">
           <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Content Shelf. All Rights Reserved.</p>
-          <Link href="/login">
-            <Button variant="outline" aria-label="Login">
-              <LogIn />
-              Login
-            </Button>
-          </Link>
+          <AuthButton />
         </div>
       </footer>
     </div>
