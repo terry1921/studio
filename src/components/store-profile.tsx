@@ -11,9 +11,9 @@ export function StoreProfile() {
       <CardHeader className="text-center">
         <div className="flex justify-center mb-4">
             <Avatar className="h-24 w-24 border-4 border-primary">
-              <AvatarImage 
-                src={storeInfo.profileImageUrl} 
-                alt={storeInfo.name} 
+              <AvatarImage
+                src={storeInfo.profileImageUrl}
+                alt={storeInfo.name}
                 data-ai-hint={storeInfo.profileImageAiHint}
               />
               <AvatarFallback>{storeInfo.name.charAt(0)}</AvatarFallback>

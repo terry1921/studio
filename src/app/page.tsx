@@ -22,7 +22,7 @@ export default function Home() {
             <StoreProfile />
             <MusicShowcase />
           </aside>
-          
+
           <div className="lg:col-span-2 flex flex-col gap-8">
             <ProductShowcase />
             <BlogPosts />

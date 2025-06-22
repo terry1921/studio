@@ -16,10 +16,10 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { Loader2, UserPlus } from "lucide-react";
 import { auth, googleProvider, db } from '@/lib/firebase';
-import { 
-  createUserWithEmailAndPassword, 
-  signInWithPopup, 
-  updateProfile, 
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
   getAdditionalUserInfo,
   sendEmailVerification
 } from 'firebase/auth';
@@ -49,10 +49,10 @@ export default function SignupPage() {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      
+
       await updateProfile(user, { displayName: name });
       await sendEmailVerification(user);
-      
+
       const userRef = ref(db, 'users/' + user.uid);
       await set(userRef, {
         name: name,
@@ -78,7 +78,7 @@ export default function SignupPage() {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const additionalInfo = getAdditionalUserInfo(result);
-      
+
       if (additionalInfo?.isNewUser) {
           const user = result.user;
           const userRef = ref(db, 'users/' + user.uid);

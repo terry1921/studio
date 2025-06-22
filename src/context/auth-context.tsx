@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (currentUser) {
         setUser(currentUser);
         const userRef = ref(db, 'users/' + currentUser.uid);
-        
+
         const listener = onValue(userRef, (snapshot) => {
           setUserData(snapshot.val() as UserData);
           setLoading(false);
