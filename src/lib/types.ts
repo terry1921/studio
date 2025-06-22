@@ -11,6 +11,7 @@ export interface Product {
   name: string;
   category: 'T-Shirt' | 'Sticker' | 'Magnet' | 'Button' | 'Bumper Sticker';
   imageUrl: string;
+  storeUrl: string;
   aiHint: string;
 }
 

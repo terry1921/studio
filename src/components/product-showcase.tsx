@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { storeInfo } from "@/lib/mock-data";
@@ -32,7 +33,8 @@ export async function ProductShowcase() {
         id: data.id,
         name: data.title,
         category: data.label,
-        imageUrl: `https://placehold.co/400x400.png`,
+        imageUrl: data.imageUrl || `https://placehold.co/400x400.png`,
+        storeUrl: data.storeUrl,
         aiHint: aiHint,
       } as Product;
     });
@@ -50,26 +52,28 @@ export async function ProductShowcase() {
       <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.length > 0 ? (
           products.map((product) => (
-            <Card key={product.id} className="overflow-hidden flex flex-col">
-              <div className="relative aspect-square w-full">
-                <Image
-                  src={product.imageUrl}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                  data-ai-hint={product.aiHint}
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="text-lg">{product.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                 <Badge variant="secondary" className="flex items-center gap-2 w-fit">
-                  {categoryIcons[product.category]}
-                  {product.category}
-                </Badge>
-              </CardContent>
-            </Card>
+            <Link key={product.id} href={product.storeUrl} target="_blank" rel="noopener noreferrer" className="flex">
+              <Card className="overflow-hidden flex flex-col w-full hover:shadow-lg transition-shadow duration-300">
+                <div className="relative aspect-square w-full">
+                  <Image
+                    src={product.imageUrl}
+                    alt={product.name}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={product.aiHint}
+                  />
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-lg">{product.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <Badge variant="secondary" className="flex items-center gap-2 w-fit">
+                    {categoryIcons[product.category]}
+                    {product.category}
+                  </Badge>
+                </CardContent>
+              </Card>
+            </Link>
           ))
         ) : (
           <p className="col-span-full text-center text-muted-foreground">
