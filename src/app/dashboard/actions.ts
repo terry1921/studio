@@ -7,7 +7,7 @@ import { collection, addDoc, getCountFromServer, serverTimestamp } from 'firebas
 const productSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters long." }),
   storeUrl: z.string().url({ message: "Please enter a valid URL." }),
-  label: z.enum(['Sticker', 'Bumper Sticker', 'Button', 'Magnet', 'T-shirt'], { 
+  label: z.enum(['Sticker', 'Bumper Sticker', 'Button', 'Magnet', 'T-Shirt'], { 
     errorMap: () => ({ message: "Please select a valid label type." })
   }),
 });

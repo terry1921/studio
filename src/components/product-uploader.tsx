@@ -36,7 +36,7 @@ export function ProductUploader() {
   const [state, dispatch] = useActionState(addProduct, initialState);
   const { toast } = useToast();
 
-  const labelTypes = ['Sticker', 'Bumper Sticker', 'Button', 'Magnet', 'T-shirt'];
+  const labelTypes = ['Sticker', 'Bumper Sticker', 'Button', 'Magnet', 'T-Shirt'];
 
   useEffect(() => {
     if (state.message) {
