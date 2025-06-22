@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { TopicSuggester } from '@/components/topic-suggester';
 import Link from 'next/link';
 import { Icons } from '@/components/icons';
+import { ProductUploader } from '@/components/product-uploader';
 
 export default function DashboardPage() {
   const { user, userData, loading } = useAuth();
@@ -42,9 +43,9 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6">
+      <main className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6">
         {loading || !user ? (
-          <div className="w-full max-w-2xl space-y-8">
+          <div className="w-full max-w-2xl space-y-8 py-8">
             <Card>
                 <CardHeader className="items-center text-center">
                     <Skeleton className="h-8 w-48 mb-2" />
@@ -60,7 +61,7 @@ export default function DashboardPage() {
             </Card>
           </div>
         ) : (
-          <div className="w-full max-w-2xl space-y-8">
+          <div className="w-full max-w-2xl space-y-8 py-8">
             <Card>
                 <CardHeader className="text-center">
                 <CardTitle className="text-2xl font-headline">Dashboard</CardTitle>
@@ -78,9 +79,8 @@ export default function DashboardPage() {
                 </CardContent>
             </Card>
 
-            {userData?.role === 'admin' && (
-                <TopicSuggester />
-            )}
+            {userData?.role === 'admin' && <TopicSuggester />}
+            {userData?.role === 'admin' && <ProductUploader />}
           </div>
         )}
       </main>
